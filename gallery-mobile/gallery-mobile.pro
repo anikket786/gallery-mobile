@@ -19,7 +19,11 @@ SOURCES += \
 RESOURCES += \
     gallery.qrc
 
-LIBS += L$$OUT_PWD/../gallery-core/lgallery-core
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../gallery-core/release/ -lgallery-core
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../gallery-core/debug/ -lgallery-core
+else:unix: LIBS += -L$$OUT_PWD/../gallery-core/ -lgallery-core
+LIBS += -L$$OUT_PWD/../gallery-core/ -lgallery-core
+
 INCLUDEPATH += $$PWD/../gallery-core
 DEPENDPATH += $$PWD/../gallery-core
 
@@ -28,11 +32,6 @@ contains(ANDROID_TARGET_ARCH, x86){
         $$[QT_INSTALL_LIBS]/libQt5Sql.so
 }
 
-# Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH =
-
-# Additional import path used to resolve QML modules just for Qt Quick Designer
-QML_DESIGNER_IMPORT_PATH =
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
