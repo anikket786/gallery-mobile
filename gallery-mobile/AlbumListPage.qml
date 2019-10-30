@@ -28,6 +28,15 @@ Page {
                 color: "#000000"
                 anchors.verticalCenter: parent.verticalCenter
             }
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    albumList.currentIndex = index
+                    pictureModel.setAlbumId(id)
+                    pageStack.push("qrc:/qml/AlbumPage.qml", { albumName: name, albumRowIndex: index })
+                }
+            }
         }
     }
 }

@@ -31,7 +31,7 @@ public:
     bool removeRows(int row, int count, const QModelIndex& parent) override;
     QHash<int, QByteArray> roleNames() const override;
 
-    void setAlbumId(int albumId);
+    Q_INVOKABLE void setAlbumId(int albumId);
     void clearAlbum();
 
 public slots:
